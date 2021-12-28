@@ -13,8 +13,21 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
-          node-version: "12.x"
+          node-version: "14.x"
       - name: Setup ESLint
         run: npm install --save-dev eslint@8 eslint-config-react-app@7 eslint-config-airbnb@19.x
       - name: ESLint Report
         run: npx eslint .
+  stylelint:
+    name: Stylelint
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "14.x"
+      - name: Setup Stylelint
+        run: |
+          npm install --save-dev stylelint@14 stylelint-scss@4 stylelint-config-standard@24 stylelint-csstree-validator@2
+      - name: Stylelint Report
+        run: npx stylelint "**/*.{css,scss}"
