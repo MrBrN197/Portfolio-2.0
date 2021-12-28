@@ -1,0 +1,20 @@
+name: Linters
+
+on: pull_request
+
+env:
+  FORCE_COLOR: 1
+
+jobs:
+  eslint:
+    name: ESLint
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "12.x"
+      - name: Setup ESLint
+        run: npm install --save-dev eslint@8 eslint-config-react-app@7 eslint-config-airbnb@19.x
+      - name: ESLint Report
+        run: npx eslint .
